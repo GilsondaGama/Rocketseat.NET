@@ -13,7 +13,6 @@ public class UserController : ControllerBase
     [Route("{id}")]
     [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-
     public IActionResult GetById([FromHeader] int id, [FromHeader] string? nickname)
     {
         var user = new User
@@ -38,6 +37,14 @@ public class UserController : ControllerBase
         };
 
         return Created(string.Empty, response);
+    }
+
+    [HttpPut]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult Update([FromRoute] int id,[FromBody] RequestUpdateUserProfileJson request)
+    {
+        return NoContent();
     }
 
 }
