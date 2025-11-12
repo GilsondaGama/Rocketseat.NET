@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using MyFirstAPI.Communication.Requests;
 using MyFirstAPI.Communication.Responses;
 
@@ -41,11 +42,10 @@ public class UserController : ControllerBase
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public IActionResult Update([FromRoute],[FromBody] RequestUpdateUserProfileJson request)
+    public IActionResult Update([FromBody] RequestUpdateUserProfileJson request)
     {
         return NoContent();
     }
-
 
     [HttpDelete]    
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -54,6 +54,35 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [HttpGet]
+    [ProducesResponseType(typeof(List<User>), StatusCodes.Status200OK)]
+    public IActionResult GetAll()
+    {
+        var response = new List<User>
+        {
+            new User
+            {
+                Id = 1,
+                Name = "John Doe",
+                Age = 30
+            },
+            new User
+            {
+                Id = 2,
+                Name = "Jane Smith",
+                Age = 25
+            }
+        };
+        return Ok(response);
+    }
+
+    [HttpPut("change-password")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public IActionResult ChangePassword([FromBody] RequestChangePasswordJson request)
+    {
+        return NoContent();
+    }
 }
+
 
 
