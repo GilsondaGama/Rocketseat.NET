@@ -1,14 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.ResponseCompression;
 using MyFirstAPI.Communication.Requests;
-using MyFirstAPI.Communication.Responses;
 
 namespace MyFirstAPI.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-
-public class UserController : ControllerBase
+public class UserController : MyFirstApiBaseController
 {
     [HttpGet]
     [Route("{id}")]
