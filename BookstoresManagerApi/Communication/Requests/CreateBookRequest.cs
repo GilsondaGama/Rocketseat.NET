@@ -1,0 +1,26 @@
+﻿using BookstoresManagerApi.Validators;
+using System.ComponentModel.DataAnnotations;
+
+namespace BookstoresManagerApi.Requests
+{
+    public class CreateBookRequest
+    {
+        [Required]
+        [StringLength(120, MinimumLength = 2)]
+        public string Title { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(120, MinimumLength = 2)]
+        public string Author { get; set; } = string.Empty;
+
+        [Required]
+        [AllowedGenres]
+        public string Genre { get; set; } = string.Empty;
+
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; } = 0.0m;
+
+        [Range(0, int.MaxValue)]
+        public int Stock { get; set; } = 0;
+    }
+}

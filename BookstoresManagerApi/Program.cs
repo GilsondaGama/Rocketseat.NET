@@ -1,11 +1,15 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
+// register in-memory book service (replace with real repository later)
+builder.Services.AddSingleton<BookstoresManagerApi.Services.IBookService, BookstoresManagerApi.Services.InMemoryBookService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
 var app = builder.Build();
 
