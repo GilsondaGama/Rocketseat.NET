@@ -28,5 +28,25 @@ namespace BookstoresManagerApi.Services
                 string.Equals(b.Author?.Trim(), author?.Trim(), StringComparison.OrdinalIgnoreCase));
             return Task.FromResult(exists);
         }
+
+        public Task<IEnumerable<Book>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UpdateAsync(Book book)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> ExistsByTitleAndAuthorAsync(string title, string author, Guid? excludeId = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

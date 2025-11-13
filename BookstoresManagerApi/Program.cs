@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+
 // register in-memory book service (replace with real repository later)
 builder.Services.AddSingleton<BookstoresManagerApi.Services.IBookService, BookstoresManagerApi.Services.InMemoryBookService>();
 

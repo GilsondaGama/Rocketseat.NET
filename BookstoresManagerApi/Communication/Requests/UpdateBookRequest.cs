@@ -3,7 +3,7 @@ using BookstoresManagerApi.Validators;
 
 namespace BookstoresManagerApi.Communication.Requests
 {
-    public class CreateBookRequest
+    public class UpdateBookRequest
     {
         [Required]
         [StringLength(120, MinimumLength = 2)]
