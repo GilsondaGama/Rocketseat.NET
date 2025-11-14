@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using BookstoresManagerApi.Validators;
 
 namespace BookstoresManagerApi.Communication.Requests
