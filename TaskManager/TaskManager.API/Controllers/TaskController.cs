@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskManager.Application.UseCases.Tasks.Delete;
 using TaskManager.Application.UseCases.Tasks.GetAll;
 using TaskManager.Application.UseCases.Tasks.GetById;
 using TaskManager.Application.UseCases.Tasks.Register;
@@ -62,5 +63,17 @@ public class TaskController : ControllerBase
         var response = useCase.Execute(id);
 
         return Ok(response);
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
+    public IActionResult Delete(Guid id)
+    {
+        var useCase = new DeleteTaskByIdUseCase();
+        useCase.Execute(id);
+
+        return NoContent();
     }
 }
