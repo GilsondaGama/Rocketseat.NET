@@ -7,11 +7,11 @@ public class RegisterExpenseValidator : AbstractValidator<RequestRegisterExpense
 {
     public RegisterExpenseValidator()
     {
-        RuleFor(expense => expense.Title).NotEmpty().WithMessage("Title is required");
-        RuleFor(expense => expense.Amount).GreaterThan(0).WithMessage("Amount must be greater than zero");
-        RuleFor(expense => expense.Date)
+        RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required");
+        RuleFor(x => x.Amount).GreaterThan(0).WithMessage("Amount must be greater than zero");
+        RuleFor(x => x.Date)
             .LessThanOrEqualTo(DateTime.UtcNow)
             .WithMessage("Date cannot be in the future");
-        RuleFor(expense => expense.PaymentType).IsInEnum().WithMessage("Invalid payment type");
+        RuleFor(x => x.PaymentType).IsInEnum().WithMessage("Invalid payment type");
     }
 }

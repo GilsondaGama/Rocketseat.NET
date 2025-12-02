@@ -16,9 +16,16 @@ public class RegisterExpenseUseCase
     }
 
     private void Validate(RequestRegisterExpenseJson request)
-    {        
+    {
         var validator = new RegisterExpenseValidator();
         var result = validator.Validate(request);
+
+        if (!result.IsValid)
+        {
+            var errors = string.Join("; ", result.Errors.Select(e => e.ErrorMessage));
+            throw new ArgumentException($"Validation failed: {errors}");
+
+        }
     }
 }
     
