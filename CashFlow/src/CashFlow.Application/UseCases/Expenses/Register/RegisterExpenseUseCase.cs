@@ -1,6 +1,6 @@
-﻿using CashFlow.Communication.Enums;
-using CashFlow.Communication.Requests;
+﻿using CashFlow.Communication.Requests;
 using CashFlow.Communication.Responses;
+using CashFlow.Exception.ExceptionsBase;
 
 namespace CashFlow.Application.UseCases.Expenses.Register;
 
@@ -8,8 +8,6 @@ public class RegisterExpenseUseCase
 {
     public ResponseRegisteredExpenseJson Execute(RequestRegisterExpenseJson request)
     {
-        // to do validations and business rules
-
         Validate(request);
 
         return new ResponseRegisteredExpenseJson();
@@ -22,9 +20,9 @@ public class RegisterExpenseUseCase
 
         if (!result.IsValid)
         {
-            var errors = string.Join("; ", result.Errors.Select(e => e.ErrorMessage));
-            throw new ArgumentException($"Validation failed: {errors}");
+            var errorsMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
 
+            throw new ErrorOnValidationException(errorsMessages);
         }
     }
 }
