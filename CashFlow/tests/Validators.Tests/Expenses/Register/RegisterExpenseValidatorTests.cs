@@ -1,5 +1,6 @@
 ﻿using CashFlow.Application.UseCases.Expenses.Register;
-using CashFlow.Communication.Requests;
+using CommonTestUtilities.Requests;
+using FluentAssertions;
 
 namespace Validators.Tests.Expenses.Register;
 
@@ -10,19 +11,12 @@ public class RegisterExpenseValidatorTests
     {
         // Arrange
         var validator = new RegisterExpenseValidator();
-        var request = new RequestRegisterExpenseJson
-        {
-            Title = "Groceries",
-            Amount = 150.75m,
-            Description = "Weekly grocery shopping",
-            Date = DateTime.UtcNow.AddDays(-1),
-            PaymentType = CashFlow.Communication.Enums.PaymentType.CreditCard
-        };
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        var request = RequestRegisterExpenseJsonBuilder.Build();
+
         // Act
         var result = validator.Validate(request);
 
         // Assert
-        Assert.True(result.IsValid);
+        result.IsValid.Should().BeTrue();
     }
 }
